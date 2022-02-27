@@ -7,7 +7,7 @@ class Fibonacci:
         while a < n:
             print(a, end=' ')
             a, b = b, a+b
-        print(a, end=' ')
+        print()
         
     def fib2(n): # 리스트형태로 반환하는 fib클래스
         result = []
@@ -15,7 +15,7 @@ class Fibonacci:
         while a < n:
             result.append(a)
             a, b = b, a+b
-            return result
+        return result
 
 
 # Fibonacci 클래스 안에는 Fibonacci를 출력해주는 함수 fib 와 리스트로 만들어서 result로 반환하는 함수 fib2가 있다
