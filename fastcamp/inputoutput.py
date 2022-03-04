@@ -24,12 +24,12 @@ print("\n")
 
 with open('/Volumes/128No1/study/fastcamp/resource/review.txt', 'r') as f:
     for c in f:
-        # print(c)
-        print(c.strip()) # 공백 및 엔터제거
+        # print(c) # 한줄씩 읽어와서 \n 이 자동작동
+        print(c.strip()) # 라인끝의 공백 및 줄바꿈 제거
 
-print()
+print("\n")
 
-# 예제4
+
 with open('/Volumes/128No1/study/fastcamp/resource/review.txt', 'r') as f:
     contents = f.read()
     print('>', contents)
@@ -37,17 +37,17 @@ with open('/Volumes/128No1/study/fastcamp/resource/review.txt', 'r') as f:
     print('>', contents)  # 내용 없음
     f.seek(0, 0)
     contents = f.read()
-    print('>', contents)
+    print('>', contents) # 리드로 한번 읽어온 다음 커서가 끝에 위치해있기때문에 리드문을 두번써도 한번만 출력됨
 
 # readline : 한 줄씩 읽기, readline(문자수) : 문자수 읽기
 
 print()
 
-# 예제5
+# 한줄한줄 읽어오게하기
 with open('/Volumes/128No1/study/fastcamp/resource/review.txt', 'r') as f:
-    line = f.readline()
-    while line:
-        print(line, end='')
+    line = f.readline() #한줄씩 호출
+    while line: # 전체 다 읽어 오는 방법 / 한줄씩 라인별 호출해서 반복
+        print(line, end='****')
         line = f.readline()
 
 # readlines : 전체 읽은 후 라인 단위 리스트 저장
@@ -55,13 +55,12 @@ with open('/Volumes/128No1/study/fastcamp/resource/review.txt', 'r') as f:
 print()
 print()
 
-# 예제6
 with open('/Volumes/128No1/study/fastcamp/resource/review.txt', 'r') as f:
-    contents = f.readlines()
+    contents = f.readlines() # 마지막 이스케이프 문자를 포함해서 리스트형태로 저장
     print(contents)
     print()
     for c in contents:
-        print(c, end='')
+        print(c, end='****')
 
 print()
 print()
@@ -70,29 +69,26 @@ print()
 with open('/Volumes/128No1/study/fastcamp/resource/score.txt', 'r') as f:
     score = []
     for line in f:
-        score.append(int(line))
+        score.append(int(line)) # 텍스트 파일에 저장된건 무조건 srt로 인식됨으로 필요에 따라 int 등의 형변환이 필요함
     print(score)
     print('Average : {:6.3f}'.format(sum(score) / len(score)))
 
 # 파일 쓰기
 
-# 예제1
 with open('/Volumes/128No1/study/fastcamp/resource/test.txt', 'w') as f:
-    f.write('niceman!')
+    f.write('niceman!\n')
 
-# 예제2
-with open('/Volumes/128No1/study/fastcamp/resource/test.txt', 'a') as f:
-    f.write('niceman!!')
+with open('/Volumes/128No1/study/fastcamp/resource/test2.txt', 'a') as f:
+    f.write('niceman!!\n')
 
-# 예제3
 from random import randint
 
 with open('/Volumes/128No1/study/fastcamp/resource/score2.txt', 'w') as f:
     for cnt in range(6):
-        f.write(str(randint(50, 100)))
-        f.write('\n')
+        f.write(str(randint(1, 46)))
+        f.write('\n') #랜덤 구문 확인하여 로또 번호 뽑아서 텍스트 파일에 기재하기
 
-# 예제4
+
 # writelines : 리스트 -> 파일로 저장
 with open('/Volumes/128No1/study/fastcamp/resource/test2.txt', 'w') as f:
     list = ['Kim\n', 'Park\n', 'Lee\n']
@@ -100,5 +96,5 @@ with open('/Volumes/128No1/study/fastcamp/resource/test2.txt', 'w') as f:
 
 # 예제5
 with open('/Volumes/128No1/study/fastcamp/resource/test3.txt', 'w') as f:
-    print('Test Contents!', file=f)
+    print('Test Contents!', file=f) # 프린트문을 활용한 파일 기재
     print('Test Contents!!', file=f)
